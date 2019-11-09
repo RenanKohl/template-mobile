@@ -50,4 +50,5 @@ dependencies {
     // Biblioteca para imagens circulares
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
