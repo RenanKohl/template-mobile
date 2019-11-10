@@ -1,0 +1,853 @@
+{
+	"info": {
+		"_postman_id": "07e0adc4-bc34-4f08-b57c-f78d1fb04b2e",
+		"name": "Sustentabilidade",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agrotóxico - selecionar um",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/agrotoxico/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"agrotoxico",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agrotóxico - selecionar todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/agrotoxico/all/2",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"agrotoxico",
+						"all",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agrotóxico - inserir",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"titulo\": \"Teste\",\n        \"descricao\": \"1\",\n        \"foto\": \"5\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/agrotoxico/new",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"agrotoxico",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agrotóxico - atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"id\": 1,\n        \"titulo\": \"Curso de corte e costura\",\n        \"descricao\": \"A1\",\n        \"foto\": \"A6\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/agrotoxico",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"agrotoxico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agrotóxico - deletar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/agrotoxico/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"agrotoxico",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reciclagem - selecionar um",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reciclagem/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reciclagem",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reciclagem - selecionar todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reciclagem/all/2",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reciclagem",
+						"all",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reciclagem - inserir",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"titulo\": \"Teste\",\n        \"descricao\": \"1\",\n        \"foto\": \"5\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reciclagem/new",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reciclagem",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reciclagem - atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"id\": 1,\n        \"titulo\": \"Curso de corte e costura\",\n        \"descricao\": \"A1\",\n        \"foto\": \"A6\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reciclagem",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reciclagem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reciclagem - deletar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reciclagem/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reciclagem",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Redução Lixo - selecionar um",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reducao_lixo/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reducao_lixo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Redução Lixo - selecionar todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reducao_lixo/all/2",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reducao_lixo",
+						"all",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Redução Lixo - inserir",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"titulo\": \"Teste\",\n        \"descricao\": \"1\",\n        \"foto\": \"5\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reducao_lixo/new",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reducao_lixo",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Redução Lixo - atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"id\": 1,\n        \"titulo\": \"Curso de corte e costura\",\n        \"descricao\": \"A1\",\n        \"foto\": \"A6\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reducao_lixo",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reducao_lixo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Redução Lixo  - deletar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/reducao_lixo/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"reducao_lixo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resíduos - selecionar um",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/residuo/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"residuo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resíduos - selecionar todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/residuo/all/0",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"residuo",
+						"all",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resíduos - inserir",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"titulo\": \"Teste\",\n        \"descricao\": \"1\",\n        \"foto\": \"5\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/residuo/new",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"residuo",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resíduos - atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"id\": 1,\n        \"titulo\": \"Curso de corte e costura\",\n        \"descricao\": \"A1\",\n        \"foto\": \"A6\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/residuo",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"residuo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resíduos  - deletar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/residuo/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"residuo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ôrganicos - selecionar um",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/organico/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"organico",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ôrganicos - selecionar todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/organico/all/2",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"organico",
+						"all",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ôrganicos - inserir",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"titulo\": \"Teste\",\n        \"descricao\": \"1\",\n        \"foto\": \"5\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/organico/new",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"organico",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ôrganicos - atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"id\": 1,\n        \"titulo\": \"Curso de corte e costura\",\n        \"descricao\": \"A1\",\n        \"foto\": \"A6\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/organico",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"organico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ôrganicos  - deletar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/organico/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"organico",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuários - selecionar um",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/usuario/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuários - selecionar todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/usuario/all/0",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"usuario",
+						"all",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuários - inserir",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"matricula\": \"0\",\n            \"nome\": \"fred\",\n            \"sobrenome\": \"flintstones\",\n            \"email\": \"fred@flintstones.com.br\",\n            \"foto_url\": \"\",\n            \"tipo\": \"\",\n            \"token_facebook\": \"\",\n            \"token_google\": \"\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/usuario/new",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"usuario",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuários - deletar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/usuario/1",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuários - atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\t\"id\": 2,\n            \"matricula\": \"9999\",\n            \"nome\": \"fred\",\n            \"sobrenome\": \"flintstones\",\n            \"email\": \"fred@flintstones.com.br\",\n            \"foto_url\": \"\",\n            \"tipo\": \"\",\n            \"token_facebook\": \"\",\n            \"token_google\": \"\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}/sustentabilidade/usuario",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sustentabilidade",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9554f06d-294f-475f-aa86-9a007e30a77d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "93a9dfe6-ff97-4d08-b56f-b30ff296b247",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

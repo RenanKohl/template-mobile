@@ -13,7 +13,7 @@ import br.utp.sustentabilidade.R;
 import br.utp.sustentabilidade.databinding.ActivityMainBinding;
 import br.utp.sustentabilidade.fragments.OrganicoFragment;
 import br.utp.sustentabilidade.fragments.OrganicoFragmentResiduos;
-import br.utp.sustentabilidade.fragments.OrganicoReciclagemFragment;
+import br.utp.sustentabilidade.fragments.ReciclagemFragment;
 import br.utp.sustentabilidade.fragments.OrganicoAgrotoxicosFragment;
 import br.utp.sustentabilidade.fragments.OrganicoReducaoLixoFragment;
 
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Inicializa os fragmentos
     Fragment mFragmentoOrganico = OrganicoFragment.newInstance();
-    Fragment mOrganicoReciclagemFragment = OrganicoReciclagemFragment.newInstance();
+    Fragment mOrganicoReciclagemFragment = ReciclagemFragment.newInstance();
     Fragment mOrganicoAgrotoxicosFragment = OrganicoAgrotoxicosFragment.newInstance();
     Fragment mOrganicoReducaoLixoFragment = OrganicoReducaoLixoFragment.newInstance();
     Fragment mOrganicoFragmentResiduos = OrganicoFragmentResiduos.newInstance();

@@ -3,6 +3,7 @@ package br.utp.sustentabilidade.network;
 import java.util.List;
 
 import br.utp.sustentabilidade.models.Organico;
+import br.utp.sustentabilidade.models.Reciclagem;
 import br.utp.sustentabilidade.models.RespostaJSON;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -28,4 +29,6 @@ public interface SustentabilidadeService {
     @GET("organico/{id}")
     Call<RespostaJSON<Organico>> removerOrganico(@Path("id") int id);
 
+    @GET("reciclagem/all/{pagina}")
+    Call<RespostaJSON<List<Reciclagem>>> listarAllReciclagem(@Path("pagina") int pagina);
 }
