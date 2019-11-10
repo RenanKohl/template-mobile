@@ -50,5 +50,6 @@ dependencies {
     // Biblioteca para imagens circulares
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
+    implementation 'com.squareup.picasso:picasso:2.5.0'//for load image from URL
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
