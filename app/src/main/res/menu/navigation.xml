@@ -3,7 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_organicos"
-        android:icon="@drawable/ic_organicos"
-        android:title="@string/titulo_produtos_organicos" />
+        android:id="@+id/action_organicos_reciclagem"
+        android:icon="@drawable/ic_reciclagem_foreground"
+        android:title="@string/titulo_reciclagem" />
+
+    <item
+        android:id="@+id/action_organicos_agrotoxicos"
+        android:icon="@drawable/ic_agrotoxicos_foreground"
+        android:title="@string/titulo_agrotoxicos" />
+
+    <item
+        android:id="@+id/action_organicos_reducao_lixo"
+        android:icon="@drawable/ic_lixo_reducao_foreground"
+        android:title="@string/titulo_Reducao_lixos" />
+
+    <item
+        android:id="@+id/action_organicos_residuos"
+        android:icon="@drawable/ic_residuos_foreground"
+        android:title="@string/titulo_Residuos" />
 </menu>

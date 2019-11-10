@@ -20,5 +20,19 @@
     <dimen name="font_pequena">12sp</dimen>
     <dimen name="font_micro">11sp</dimen>
 
+    <style name="Texto">
+        <item name="android:textAppearance">?attr/textAppearanceListItem</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+    </style>
+
+    <style name="Titulo" parent="Texto">
+        <item name="android:textSize">@dimen/font_gigante</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
 
 </resources>

@@ -63,10 +63,13 @@ public class OrganicoFragment extends Fragment {
         mBinding.organicoRecyclerView.setLayoutManager(layout);
 
         // Exibe a progressbar
-        mBinding.organicoLoading.setVisibility(View.VISIBLE);
+        // mBinding.organicoLoading.setVisibility(View.VISIBLE);
 
         // Chama o Webservice
-        carregarWebService(0);
+        // carregarWebService(0); <- Verificar erro WebService
+
+        // Esconde a progressbar
+        mBinding.organicoLoading.setVisibility(View.GONE);
 
         return mBinding.getRoot();
     }
