@@ -6,4 +6,6 @@
     <string name="titulo_Reducao_lixos">Redução de lixos</string>
     <string name="titulo_Residuos">Resíduos</string>
     <string name="organico_erro_webservice">Erro ao carregar webservice.</string>
+    <string name="detail_buttom">Detalhes</string>
+    <string name="add_buttom">Novo</string>
 </resources>
