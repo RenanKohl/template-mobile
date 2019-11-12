@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/organico_txt_titulo"
+                android:id="@+id/reciclagem_txt_titulo"
                 style="@style/Titulo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -61,10 +61,10 @@
                 android:text="@{reciclagem.descricao}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/reciclagem_img_foto"
-                app:layout_constraintTop_toBottomOf="@+id/organico_txt_titulo" />
+                app:layout_constraintTop_toBottomOf="@+id/reciclagem_txt_titulo" />
 
             <Button
-                android:id="@+id/button_id"
+                android:id="@+id/reciclagem_buttom_detail"
                 android:layout_width="94dp"
                 android:layout_height="37dp"
                 android:layout_marginTop="8dp"

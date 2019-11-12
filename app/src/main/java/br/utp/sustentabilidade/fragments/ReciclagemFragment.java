@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,10 +33,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ReciclagemFragment extends Fragment {
+public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.ReciclagemListener {
 
     private FragmentReciclagemBinding mBinding;
-    private List<Reciclagem> mOrganicos;
+    private List<Reciclagem> mReciclagem;
 
     /**
      * Construtor de fragmentos.
@@ -56,10 +57,10 @@ public class ReciclagemFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_reciclagem, container, false);
         // Inicializa a lista de produtos orgânicos
-        mOrganicos = new ArrayList<>();
+        mReciclagem = new ArrayList<>();
 
         // Inicializa o recycler view
-        ReciclagemAdapter adapter = new ReciclagemAdapter(mOrganicos);
+        ReciclagemAdapter adapter = new ReciclagemAdapter(mReciclagem, this);
         LinearLayoutManager layout = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
 
         mBinding.reciclagemRecyclerView.setAdapter(adapter);
@@ -119,7 +120,7 @@ public class ReciclagemFragment extends Fragment {
 
     private void atualizarListaOrganicos(final List<Reciclagem> organicos) {
         // Atualiza os elementos da lista
-        mOrganicos.addAll(organicos);
+        mReciclagem.addAll(organicos);
         mBinding.reciclagemRecyclerView.getAdapter().notifyDataSetChanged();
         // Exibe a progressbar
         mBinding.reciclagemLoading.setVisibility(View.GONE);
@@ -129,4 +130,15 @@ public class ReciclagemFragment extends Fragment {
 
     }
 
+    @Override
+    public void onFotoClick(Reciclagem reciclagem) {
+        String msg = "Foto: " + reciclagem.getTitulo();
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDetalheClick(Reciclagem reciclagem) {
+        String msg = "Detalhes: " + reciclagem.getTitulo();
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
 }
