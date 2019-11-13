@@ -1,6 +1,7 @@
 package br.utp.sustentabilidade.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.utp.sustentabilidade.R;
+import br.utp.sustentabilidade.activities.ReciclagemDetailActivity;
 import br.utp.sustentabilidade.databinding.FragmentReciclagemBinding;
 import br.utp.sustentabilidade.models.Reciclagem;
 import br.utp.sustentabilidade.models.RespostaJSON;
@@ -138,7 +140,12 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
 
     @Override
     public void onDetalheClick(Reciclagem reciclagem) {
-        String msg = "Detalhes: " + reciclagem.getTitulo();
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        // String msg = "Detalhes: " + reciclagem.getTitulo();
+        // Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        Intent it = new Intent(getContext(), ReciclagemDetailActivity.class);
+        it.putExtra("titulo", reciclagem.getTitulo());
+        it.putExtra("descricao", reciclagem.getDescricao());
+        it.putExtra("foto", reciclagem.getFoto());
+        startActivity(it);
     }
 }

@@ -4,6 +4,9 @@ package br.utp.sustentabilidade.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 public class Reciclagem {
 
     @SerializedName("id")
