@@ -36,7 +36,6 @@ public class ReciclagemDetailActivity extends AppCompatActivity {
     }
 
     private void closeActivity(){
-        Toast.makeText(this, "Voltar", Toast.LENGTH_SHORT).show();
         finish();
     }
 

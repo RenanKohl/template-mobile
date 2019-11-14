@@ -1,5 +1,6 @@
 package br.utp.sustentabilidade.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -54,10 +55,8 @@ public class MainActivity extends AppCompatActivity {
             switch (pageTitle){
                 case "Reciclagem ♻":
                     // Abrir activity para adicionar: Reciclagem
-
-                    // Exibe um snackbar Para test apagar quando for implementar
-                    Snackbar.make(mBinding.getRoot(), "Reciclagem", Snackbar.LENGTH_SHORT)
-                            .show();
+                    Intent it = new Intent(this, ReciclagemAddActivity.class);
+                    startActivity(it);
                     return;
                 case "Agrotóxicos ♨":
                     // Abrir activity para adicionar: Agrotóxicos
