@@ -19,19 +19,16 @@ import android.widget.Toast;
 
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import br.utp.sustentabilidade.R;
 import br.utp.sustentabilidade.databinding.ActivityReciclagemAddBinding;
-import br.utp.sustentabilidade.models.Organico;
 import br.utp.sustentabilidade.models.Reciclagem;
-import br.utp.sustentabilidade.models.RespostaJSON;
-import br.utp.sustentabilidade.network.NetworkManager;
 import br.utp.sustentabilidade.utils.OpenModalImage;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ReciclagemAddActivity extends AppCompatActivity  {
     private ActivityReciclagemAddBinding mBinding;
@@ -58,28 +55,6 @@ public class ReciclagemAddActivity extends AppCompatActivity  {
     private void postReciclageItem(){
         reciclagem.setTitulo(mBinding.editTextAddTitleReciclagem.getText().toString());
         reciclagem.setDescricao(mBinding.editTextAddDescricaoReciclagem.getText().toString());
-//        Snackbar.make(mBinding.getRoot(), mBinding.editTextAddTitleReciclagem.getText().toString(), Snackbar.LENGTH_SHORT)
-//                .show();
-
-        Call<RespostaJSON<List<Reciclagem>>>  call = NetworkManager.service().inserirReciclagem(reciclagem);
-        call.enqueue(new Callback<RespostaJSON<List<Reciclagem>>> () {
-
-            @Override
-            public void onResponse(final Call<RespostaJSON<List<Reciclagem>>> call, final Response<RespostaJSON<List<Reciclagem>>> response) {
-                RespostaJSON<List<Reciclagem>> resposta = response.body();
-                Log.d("TAG", "onResponse: " + resposta);
-                Log.d("TAG", "onResponse: " + resposta.getStatus());
-                if (resposta != null && resposta.getStatus() == 0) {
-
-                } else {
-                }
-            }
-
-            @Override
-            public void onFailure(final Call<RespostaJSON<List<Reciclagem>>> call, final Throwable t) {
-                Log.e("TAG", "onFailure: ",t );
-            }
-        });
     }
 
 

@@ -33,5 +33,5 @@ public interface SustentabilidadeService {
     Call<RespostaJSON<List<Reciclagem>>> listarAllReciclagem(@Path("pagina") int pagina);
 
     @POST("organico/new")
-    Call<RespostaJSON<List<Reciclagem>>> inserirReciclagem(@Body Reciclagem reciclagem);
+    Call<Reciclagem> inserirReciclagem(@Body Reciclagem reciclagem);
 }
