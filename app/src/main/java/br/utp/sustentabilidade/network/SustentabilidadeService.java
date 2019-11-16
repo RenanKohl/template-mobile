@@ -31,4 +31,7 @@ public interface SustentabilidadeService {
 
     @GET("reciclagem/all/{pagina}")
     Call<RespostaJSON<List<Reciclagem>>> listarAllReciclagem(@Path("pagina") int pagina);
+
+    @POST("organico/new")
+    Call<RespostaJSON<List<Reciclagem>>> inserirReciclagem(@Body Reciclagem reciclagem);
 }

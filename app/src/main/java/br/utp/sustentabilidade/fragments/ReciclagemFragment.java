@@ -1,7 +1,14 @@
 package br.utp.sustentabilidade.fragments;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +29,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,13 +40,13 @@ import br.utp.sustentabilidade.databinding.FragmentReciclagemBinding;
 import br.utp.sustentabilidade.models.Reciclagem;
 import br.utp.sustentabilidade.models.RespostaJSON;
 import br.utp.sustentabilidade.network.NetworkManager;
+import br.utp.sustentabilidade.utils.OpenModalImage;
 import br.utp.sustentabilidade.widgets.adapters.ReciclagemAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.ReciclagemListener {
-
     private FragmentReciclagemBinding mBinding;
     private List<Reciclagem> mReciclagem;
 
@@ -134,8 +144,8 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
 
     @Override
     public void onFotoClick(Reciclagem reciclagem) {
-        String msg = "Foto: " + reciclagem.getTitulo();
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        OpenModalImage openModal = new OpenModalImage();
+        openModal.OpenModalImageUrl(getContext(), reciclagem.getFoto());
     }
 
     @Override

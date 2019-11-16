@@ -13,6 +13,7 @@ import android.widget.Toast;
 import br.utp.sustentabilidade.R;
 import br.utp.sustentabilidade.databinding.ActivityReciclagemDetailBinding;
 import br.utp.sustentabilidade.models.Reciclagem;
+import br.utp.sustentabilidade.utils.OpenModalImage;
 
 public class ReciclagemDetailActivity extends AppCompatActivity {
     private ActivityReciclagemDetailBinding mBinding;
@@ -32,7 +33,13 @@ public class ReciclagemDetailActivity extends AppCompatActivity {
             mBinding.textViewTitleDescriptionRecycle.setText(reciclagem.getTitulo());
             mBinding.textViewDescriptionDetailRecycle.setText(reciclagem.getDescricao());
             mBinding.setImageUrl(reciclagem.getFoto());
+            mBinding.imageRecycleDetail.setOnClickListener(e -> openModalImage());
         }
+    }
+
+    private void openModalImage(){
+        OpenModalImage opemModal = new OpenModalImage();
+        opemModal.OpenModalImageUrl(this, reciclagem.getFoto());
     }
 
     private void closeActivity(){
