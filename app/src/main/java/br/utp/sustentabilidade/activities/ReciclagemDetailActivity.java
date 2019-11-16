@@ -1,15 +1,7 @@
 package br.utp.sustentabilidade.activities;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import br.utp.sustentabilidade.R;
 import br.utp.sustentabilidade.databinding.ActivityReciclagemDetailBinding;
 import br.utp.sustentabilidade.models.Reciclagem;

@@ -49,6 +49,7 @@ import retrofit2.Response;
 public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.ReciclagemListener {
     private FragmentReciclagemBinding mBinding;
     private List<Reciclagem> mReciclagem;
+    private int pagina = 0;
 
     /**
      * Construtor de fragmentos.
@@ -67,6 +68,7 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
+        pagina = 0;
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_reciclagem, container, false);
         // Inicializa a lista de produtos orgânicos
         mReciclagem = new ArrayList<>();
@@ -77,12 +79,66 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
 
         mBinding.reciclagemRecyclerView.setAdapter(adapter);
         mBinding.reciclagemRecyclerView.setLayoutManager(layout);
+
         // Exibe a progressbar
         mBinding.reciclagemLoading.setVisibility(View.VISIBLE);
 
-        carregarWebService(0);
+        //Controle de páginação via RecyclerView
+        mBinding.reciclagemRecyclerView.addOnScrollListener(recyclerViewOnScrollListener);
+
+        carregarWebService(pagina);
+
         // atualizarListaOrganicos(null);
         return mBinding.getRoot();
+    }
+
+    /**
+    * Método que controla a páginação da tela via Scroll do RecyclerView
+    */
+    private RecyclerView.OnScrollListener recyclerViewOnScrollListener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+        }
+
+        // Método acionado quando é feito scroll da tela
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+
+            // Verifica se o scroll chegou no inicio da tela
+            if (!recyclerView.canScrollVertically(-1)) {
+                onScrolledToTop();
+                // Verifica se o scroll chegou no fim da tela
+            } else if (!recyclerView.canScrollVertically(1)) {
+                onScrolledToBottom();
+                // Verifica se a direção do scroll é para cima
+            } else if (dy < 0) {
+                onScrolledUp();
+                // Verifica se a direção do scroll é para baixo
+            } else if (dy > 0) {
+                onScrolledDown();
+            }
+        }
+    };
+
+    // Aqui faz a ação do scrom em movimento para cima
+    public void onScrolledUp() {}
+    // Aqui faz a ação do scrom em movimento para baixo
+    public void onScrolledDown() {}
+    // Aqui faz a ação do scrom quando chega ao topo
+    public void onScrolledToTop() {
+    }
+    // Aqui faz a ação do scrom quando chega ao final de tela
+    public void onScrolledToBottom() {
+        // Exibe a progressbar
+        mBinding.reciclagemLoading.setVisibility(View.VISIBLE);
+
+        // soma a paginação
+        pagina = pagina + 1;
+
+        // Carrega o Web Service
+        carregarWebService(pagina);
     }
 
     @Override
@@ -131,15 +187,35 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
     }
 
     private void atualizarListaOrganicos(final List<Reciclagem> organicos) {
-        // Atualiza os elementos da lista
-        mReciclagem.addAll(organicos);
-        mBinding.reciclagemRecyclerView.getAdapter().notifyDataSetChanged();
-        // Exibe a progressbar
+        if(organicos.size() > 0){
+            // For de verificação item a item para evitar itens inconsistentes
+            for(int i = 0; i < organicos.size(); i++){
+                /*
+                 *  IF que verifica se existe dados no objeto que foi recebido do webService
+                 *  para evitar quebra da aplicação colocando um card com itens inconsistentes
+                 */
+                if(
+                   organicos.get(i).getTitulo().length() > 0 &&
+                   organicos.get(i).getDescricao().length() > 0 &&
+                   organicos.get(i).getFoto().length() > 0
+                ){
+                    mReciclagem.add(organicos.get(i));
+                }
+            }
+            // Atualiza os elementos da lista na view
+            mBinding.reciclagemRecyclerView.getAdapter().notifyDataSetChanged();
+        } else {
+            String msg = "Sem dados para carga";
+            Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            pagina = pagina - 1;
+        }
+        // esconde a progressbar
         mBinding.reciclagemLoading.setVisibility(View.GONE);
     }
 
     private void exibirMensagemErro() {
-
+         String msg = "Sem dados para carga";
+         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -157,5 +233,31 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
         it.putExtra("descricao", reciclagem.getDescricao());
         it.putExtra("foto", reciclagem.getFoto());
         startActivity(it);
+    }
+
+    @Override
+    public void onClickDelete(Reciclagem reciclagem) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Você tem certeza que deseja deletar este item?");
+
+        builder.setPositiveButton(R.string.confirm_buttom, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String msg = "Item de ID foi deletado: " + reciclagem.getId();
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel_buttom, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String msg = "Ação cancelada!";
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.create();
+        builder.show();
+
     }
 }

@@ -1,12 +1,8 @@
 package br.utp.sustentabilidade.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
-
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,17 +10,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.List;
-
 import br.utp.sustentabilidade.R;
 import br.utp.sustentabilidade.databinding.ActivityReciclagemAddBinding;
-import br.utp.sustentabilidade.models.Organico;
 import br.utp.sustentabilidade.models.Reciclagem;
 import br.utp.sustentabilidade.models.RespostaJSON;
 import br.utp.sustentabilidade.network.NetworkManager;
@@ -38,56 +29,79 @@ public class ReciclagemAddActivity extends AppCompatActivity  {
     private ImageView imageViewUpload;
     private String pathImg = "";
     private Uri imageUri;
-    private Reciclagem reciclagem = null;
+    private Bitmap image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_reciclagem_add);
-        mBinding.buttonBack.setOnClickListener(e -> closeActivity());
-        mBinding.imageViewUpload.setOnClickListener(v -> openModalImage());
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
-        }
 
+        mBinding.buttonBack.setOnClickListener(e -> closeActivity());
+
+        mBinding.imageViewUpload.setOnClickListener(v -> openModalImage());
         mBinding.buttonEnviar.setOnClickListener(e -> postReciclageItem());
         imageViewUpload = (ImageView) mBinding.imageViewUpload;
-        mBinding.buttonUploadImage.setOnClickListener(e -> tirarFoto());
+
+        // Iniciando loading como GONE
+        mBinding.reciclagemLoadingAdd.setVisibility(View.GONE);
+        mBinding.buttonUploadImage.setOnClickListener(e -> getDevicePhoto());
     }
 
     private void postReciclageItem(){
-        reciclagem.setTitulo(mBinding.editTextAddTitleReciclagem.getText().toString());
-        reciclagem.setDescricao(mBinding.editTextAddDescricaoReciclagem.getText().toString());
-//        Snackbar.make(mBinding.getRoot(), mBinding.editTextAddTitleReciclagem.getText().toString(), Snackbar.LENGTH_SHORT)
-//                .show();
+        // Exibe a progressbar
+        mBinding.reciclagemLoadingAdd.setVisibility(View.VISIBLE);
+        // Verificando se os campos estão preenchidos
+        if(
+        mBinding.editTextAddTitleReciclagem.getText().toString().length() > 0 &&
+        mBinding.editTextAddDescricaoReciclagem.getText().toString().length() > 0 &&
+        pathImg.length() > 0
+        ){
+            Call<Reciclagem> call = NetworkManager.service().inserirReciclagem(
+                    mBinding.editTextAddTitleReciclagem.getText().toString(),
+                    mBinding.editTextAddDescricaoReciclagem.getText().toString(),
+                    "https://d1qmdf3vop2l07.cloudfront.net/azure-candy.cloudvent.net/compressed/_min_/4b9098a09523e8f3810cc79aca61623f.jpg"
+            );
 
-        Call<RespostaJSON<List<Reciclagem>>>  call = NetworkManager.service().inserirReciclagem(reciclagem);
-        call.enqueue(new Callback<RespostaJSON<List<Reciclagem>>> () {
-
-            @Override
-            public void onResponse(final Call<RespostaJSON<List<Reciclagem>>> call, final Response<RespostaJSON<List<Reciclagem>>> response) {
-                RespostaJSON<List<Reciclagem>> resposta = response.body();
-                Log.d("TAG", "onResponse: " + resposta);
-                Log.d("TAG", "onResponse: " + resposta.getStatus());
-                if (resposta != null && resposta.getStatus() == 0) {
-
-                } else {
+            call.enqueue(new Callback<Reciclagem>() {
+                @Override
+                public void onResponse(Call<Reciclagem> call, Response<Reciclagem>response) {
+                    if(response.isSuccessful()) {
+                        responseAddReciclagem();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(final Call<RespostaJSON<List<Reciclagem>>> call, final Throwable t) {
-                Log.e("TAG", "onFailure: ",t );
-            }
-        });
+                @Override
+                public void onFailure(Call<Reciclagem> call, Throwable t) {
+                    erroFailure();
+                }
+            });
+        } else {
+            String msg = "Preencha todos os campos!" ;
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+            mBinding.reciclagemLoadingAdd.setVisibility(View.GONE);
+        }
     }
 
+    public void responseAddReciclagem(){
+        String msg = "Enviado" ;
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        mBinding.reciclagemLoadingAdd.setVisibility(View.GONE);
+        closeActivity();
+    }
+
+    public void erroFailure(){
+        String msg = "Algo saio errado!" ;
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        mBinding.reciclagemLoadingAdd.setVisibility(View.GONE);
+        closeActivity();
+    }
 
     private void openModalImage(){
         OpenModalImage openModal = new OpenModalImage();
         openModal.OpenModalImageUri(this, imageUri);
     }
-    private void tirarFoto(){
+
+    private void getDevicePhoto(){
         Intent it = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(it, 200);
     }
@@ -116,7 +130,7 @@ public class ReciclagemAddActivity extends AppCompatActivity  {
             cursor.close();
 
             // Convertendo Image
-            Bitmap image = (BitmapFactory.decodeFile(pathImg));
+            image = (BitmapFactory.decodeFile(pathImg));
 
             imageViewUpload.setImageURI(imageUri); // inserindo imagem na view
         } else
