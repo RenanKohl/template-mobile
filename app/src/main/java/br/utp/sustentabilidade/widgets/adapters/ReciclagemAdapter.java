@@ -45,6 +45,7 @@ public class ReciclagemAdapter extends RecyclerView.Adapter<ReciclagemAdapter.Re
     public interface ReciclagemListener{
         void onFotoClick(Reciclagem reciclagem);
         void onDetalheClick(Reciclagem reciclagem);
+        void onClickDelete(Reciclagem reciclagem);
     }
 
     /**
@@ -65,6 +66,7 @@ public class ReciclagemAdapter extends RecyclerView.Adapter<ReciclagemAdapter.Re
             // TODO: Amarrar eventos
             mBinding.reciclagemImgFoto.setOnClickListener(v -> mListener.onFotoClick(reciclagem));
             mBinding.reciclagemButtomDetail.setOnClickListener(v -> mListener.onDetalheClick(reciclagem));
+            mBinding.buttonDeleteCardDelete.setOnClickListener(v -> mListener.onClickDelete(reciclagem));
         }
     }
 }

@@ -68,6 +68,7 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
+        pagina = 0;
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_reciclagem, container, false);
         // Inicializa a lista de produtos orgânicos
         mReciclagem = new ArrayList<>();
@@ -193,11 +194,14 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
                  *  IF que verifica se existe dados no objeto que foi recebido do webService
                  *  para evitar quebra da aplicação colocando um card com itens inconsistentes
                  */
-                if(organicos.get(i).getTitulo().length() > 0 && organicos.get(i).getDescricao().length() > 0){
+                if(
+                   organicos.get(i).getTitulo().length() > 0 &&
+                   organicos.get(i).getDescricao().length() > 0 &&
+                   organicos.get(i).getFoto().length() > 0
+                ){
                     mReciclagem.add(organicos.get(i));
                 }
             }
-
             // Atualiza os elementos da lista na view
             mBinding.reciclagemRecyclerView.getAdapter().notifyDataSetChanged();
         } else {
@@ -229,5 +233,31 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
         it.putExtra("descricao", reciclagem.getDescricao());
         it.putExtra("foto", reciclagem.getFoto());
         startActivity(it);
+    }
+
+    @Override
+    public void onClickDelete(Reciclagem reciclagem) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Você tem certeza que deseja deletar este item?");
+
+        builder.setPositiveButton(R.string.confirm_buttom, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String msg = "Item de ID foi deletado: " + reciclagem.getId();
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel_buttom, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String msg = "Ação cancelada!";
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.create();
+        builder.show();
+
     }
 }
