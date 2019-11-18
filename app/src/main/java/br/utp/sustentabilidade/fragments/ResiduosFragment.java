@@ -1,5 +1,6 @@
 package br.utp.sustentabilidade.fragments;
 
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,29 +23,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.utp.sustentabilidade.R;
-import br.utp.sustentabilidade.activities.ReciclagemDetailActivity;
-import br.utp.sustentabilidade.databinding.FragmentReciclagemBinding;
-import br.utp.sustentabilidade.models.Reciclagem;
+import br.utp.sustentabilidade.activities.ResiduoDetailActivity;
+import br.utp.sustentabilidade.databinding.FragmentResiduosBinding;
+import br.utp.sustentabilidade.models.Residuo;
 import br.utp.sustentabilidade.models.RespostaJSON;
 import br.utp.sustentabilidade.network.NetworkManager;
 import br.utp.sustentabilidade.utils.OpenModalImage;
-import br.utp.sustentabilidade.widgets.adapters.ReciclagemAdapter;
+import br.utp.sustentabilidade.widgets.adapters.ResiduoAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.ReciclagemListener {
-    private FragmentReciclagemBinding mBinding;
-    private List<Reciclagem> mReciclagem;
+
+public class ResiduosFragment extends Fragment implements ResiduoAdapter.ResiduoListener {
+
+    private FragmentResiduosBinding mBinding;
+    private List<Residuo> mResiduos;
     private int pagina = 0;
 
     /**
      * Construtor de fragmentos.
      *
-     * @return Retorna uma instância do fragmento de residuos.
+     * @return Retorna uma instância do fragmento de resíduos.
      */
-    public static ReciclagemFragment newInstance() {
-        return new ReciclagemFragment();
+    public static ResiduosFragment newInstance() {
+        return new ResiduosFragment();
     }
 
     @Override
@@ -56,32 +59,23 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
         pagina = 0;
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_reciclagem, container, false);
-        // Inicializa a lista de produtos orgânicos
-        mReciclagem = new ArrayList<>();
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_residuos, container, false);
+        mResiduos = new ArrayList<>();
 
-        // Inicializa o recycler view
-        ReciclagemAdapter adapter = new ReciclagemAdapter(mReciclagem, this);
+        ResiduoAdapter adapter = new ResiduoAdapter(mResiduos, this);
         LinearLayoutManager layout = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
 
-        mBinding.reciclagemRecyclerView.setAdapter(adapter);
-        mBinding.reciclagemRecyclerView.setLayoutManager(layout);
-
-        // Exibe a progressbar
-        mBinding.reciclagemLoading.setVisibility(View.VISIBLE);
-
-        //Controle de páginação via RecyclerView
-        mBinding.reciclagemRecyclerView.addOnScrollListener(recyclerViewOnScrollListener);
-
+        mBinding.residuoRecyclerView.setAdapter(adapter);
+        mBinding.residuoRecyclerView.setLayoutManager(layout);
+        mBinding.residuoRecyclerView.addOnScrollListener(recyclerViewOnScrollListener);
         carregarWebService(pagina);
 
-        // atualizarListaOrganicos(null);
         return mBinding.getRoot();
     }
 
     /**
-    * Método que controla a páginação da tela via Scroll do RecyclerView
-    */
+     * Método que controla a páginação da tela via Scroll do RecyclerView
+     */
     private RecyclerView.OnScrollListener recyclerViewOnScrollListener = new RecyclerView.OnScrollListener() {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -119,7 +113,7 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
     // Aqui faz a ação do scrom quando chega ao final de tela
     public void onScrolledToBottom() {
         // Exibe a progressbar
-        mBinding.reciclagemLoading.setVisibility(View.VISIBLE);
+        mBinding.residuoLoading.setVisibility(View.VISIBLE);
 
         // soma a paginação
         pagina = pagina + 1;
@@ -150,12 +144,12 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
     }
 
     private void carregarWebService(final int pagina) {
-        Call<RespostaJSON<List<Reciclagem>>> call = NetworkManager.service().listarAllReciclagem(pagina);
-        call.enqueue(new Callback<RespostaJSON<List<Reciclagem>>>() {
+        Call<RespostaJSON<List<Residuo>>> call = NetworkManager.service().listarAllResiduo(pagina);
+        call.enqueue(new Callback<RespostaJSON<List<Residuo>>>() {
 
             @Override
-            public void onResponse(final Call<RespostaJSON<List<Reciclagem>>> call, final Response<RespostaJSON<List<Reciclagem>>> response) {
-                RespostaJSON<List<Reciclagem>> resposta = response.body();
+            public void onResponse(final Call<RespostaJSON<List<Residuo>>> call, final Response<RespostaJSON<List<Residuo>>> response) {
+                RespostaJSON<List<Residuo>> resposta = response.body();
                 Log.d("TAG", "onResponse: " + resposta);
                 Log.d("TAG", "onResponse: " + resposta.getStatus());
                 if (resposta != null && resposta.getStatus() == 0) {
@@ -166,14 +160,14 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
             }
 
             @Override
-            public void onFailure(final Call<RespostaJSON<List<Reciclagem>>> call, final Throwable t) {
+            public void onFailure(final Call<RespostaJSON<List<Residuo>>> call, final Throwable t) {
                 Log.e("TAG", "onFailure: ",t );
                 exibirMensagemErro();
             }
         });
     }
 
-    private void atualizarListaOrganicos(final List<Reciclagem> organicos) {
+    private void atualizarListaOrganicos(final List<Residuo> organicos) {
         if(organicos.size() > 0){
             // For de verificação item a item para evitar itens inconsistentes
             for(int i = 0; i < organicos.size(); i++){
@@ -182,55 +176,55 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
                  *  para evitar quebra da aplicação colocando um card com itens inconsistentes
                  */
                 if(
-                   organicos.get(i).getTitulo().length() > 0 &&
-                   organicos.get(i).getDescricao().length() > 0 &&
-                   organicos.get(i).getFoto().length() > 0
+                        organicos.get(i).getTitulo().length() > 0 &&
+                                organicos.get(i).getDescricao().length() > 0 &&
+                                organicos.get(i).getFoto().length() > 0
                 ){
-                    mReciclagem.add(organicos.get(i));
+                    mResiduos.add(organicos.get(i));
                 }
             }
             // Atualiza os elementos da lista na view
-            mBinding.reciclagemRecyclerView.getAdapter().notifyDataSetChanged();
+            mBinding.residuoRecyclerView.getAdapter().notifyDataSetChanged();
         } else {
             String msg = "Sem dados para carga";
             Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
             pagina = pagina - 1;
         }
         // esconde a progressbar
-        mBinding.reciclagemLoading.setVisibility(View.GONE);
+        mBinding.residuoLoading.setVisibility(View.GONE);
     }
 
     private void exibirMensagemErro() {
-         String msg = "Sem dados para carga";
-         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        String msg = "Sem dados para carga";
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onFotoClick(Reciclagem reciclagem) {
+    public void onFotoClick(Residuo residuo) {
         OpenModalImage openModal = new OpenModalImage();
-        openModal.OpenModalImageUrl(getContext(), reciclagem.getFoto());
+        openModal.OpenModalImageUrl(getContext(), residuo.getFoto());
     }
 
     @Override
-    public void onDetalheClick(Reciclagem reciclagem) {
-        // String msg = "Detalhes: " + reciclagem.getTitulo();
+    public void onDetalheClick(Residuo residuo) {
+        // String msg = "Detalhes: " + residuo.getTitulo();
         // Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-        Intent it = new Intent(getContext(), ReciclagemDetailActivity.class);
-        it.putExtra("titulo", reciclagem.getTitulo());
-        it.putExtra("descricao", reciclagem.getDescricao());
-        it.putExtra("foto", reciclagem.getFoto());
+        Intent it = new Intent(getContext(), ResiduoDetailActivity.class);
+        it.putExtra("titulo", residuo.getTitulo());
+        it.putExtra("descricao", residuo.getDescricao());
+        it.putExtra("foto", residuo.getFoto());
         startActivity(it);
     }
 
     @Override
-    public void onClickDelete(Reciclagem reciclagem) {
+    public void onClickDelete(Residuo residuo) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("Você tem certeza que deseja deletar este item?");
 
         builder.setPositiveButton(R.string.confirm_buttom, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String msg = "Item de ID foi deletado: " + reciclagem.getId();
+                String msg = "Item de ID foi deletado: " + residuo.getId();
                 Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
             }
         });

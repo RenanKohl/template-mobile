@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.utp.sustentabilidade.models.Organico;
 import br.utp.sustentabilidade.models.Reciclagem;
+import br.utp.sustentabilidade.models.Residuo;
 import br.utp.sustentabilidade.models.RespostaJSON;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -37,6 +38,19 @@ public interface SustentabilidadeService {
     @POST("reciclagem/new")
     @FormUrlEncoded
     Call<Reciclagem>inserirReciclagem(
+            @Field("titulo") String titulo,
+            @Field("descricao") String descricao,
+            @Field("foto") String foto
+    );
+
+
+    // RESIDUOS
+    @GET("residuo/all/{pagina}")
+    Call<RespostaJSON<List<Residuo>>> listarAllResiduo(@Path("pagina") int pagina);
+
+    @POST("residuo/new")
+    @FormUrlEncoded
+    Call<Residuo>inserirResiduo(
             @Field("titulo") String titulo,
             @Field("descricao") String descricao,
             @Field("foto") String foto

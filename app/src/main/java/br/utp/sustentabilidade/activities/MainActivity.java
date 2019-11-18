@@ -15,11 +15,11 @@ import com.google.android.material.snackbar.Snackbar;
 
 import br.utp.sustentabilidade.R;
 import br.utp.sustentabilidade.databinding.ActivityMainBinding;
-import br.utp.sustentabilidade.fragments.OrganicoFragment;
-import br.utp.sustentabilidade.fragments.OrganicoFragmentResiduos;
-import br.utp.sustentabilidade.fragments.ReciclagemFragment;
+import br.utp.sustentabilidade.fragments.ResiduosFragment;
 import br.utp.sustentabilidade.fragments.OrganicoAgrotoxicosFragment;
+import br.utp.sustentabilidade.fragments.OrganicoFragment;
 import br.utp.sustentabilidade.fragments.OrganicoReducaoLixoFragment;
+import br.utp.sustentabilidade.fragments.ReciclagemFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Visibilidade";
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment mOrganicoReciclagemFragment = ReciclagemFragment.newInstance();
     Fragment mOrganicoAgrotoxicosFragment = OrganicoAgrotoxicosFragment.newInstance();
     Fragment mOrganicoReducaoLixoFragment = OrganicoReducaoLixoFragment.newInstance();
-    Fragment mOrganicoFragmentResiduos = OrganicoFragmentResiduos.newInstance();
+    Fragment mOrganicoFragmentResiduos = ResiduosFragment.newInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 case "Resíduos \uD83D\uDEAF":
                     // Abrir activity para adicionar: Resíduos
-
+                    Intent residuo = new Intent(this, ResiduoAddActivity.class);
+                    startActivity(residuo);
                     // Exibe um snackbar Para test apagar quando for implementar
-                    Snackbar.make(mBinding.getRoot(), "Resíduos", Snackbar.LENGTH_SHORT)
-                            .show();
+                    // Snackbar.make(mBinding.getRoot(), "Resíduos", Snackbar.LENGTH_SHORT).show();
                     return;
             }
         }
