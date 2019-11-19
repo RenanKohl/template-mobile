@@ -8,6 +8,7 @@ import br.utp.sustentabilidade.models.Residuo;
 import br.utp.sustentabilidade.models.RespostaJSON;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -32,17 +33,20 @@ public interface SustentabilidadeService {
     @GET("organico/{id}")
     Call<RespostaJSON<Organico>> removerOrganico(@Path("id") int id);
 
+    // Reciclagem
     @GET("reciclagem/all/{pagina}")
     Call<RespostaJSON<List<Reciclagem>>> listarAllReciclagem(@Path("pagina") int pagina);
 
+    @DELETE("reciclagem/{id}")
+    Call<RespostaJSON> deleteReciclagem(@Path("id") int id);
+
     @POST("reciclagem/new")
     @FormUrlEncoded
-    Call<Reciclagem>inserirReciclagem(
+    Call<RespostaJSON>inserirReciclagem(
             @Field("titulo") String titulo,
             @Field("descricao") String descricao,
             @Field("foto") String foto
     );
-
 
     // RESIDUOS
     @GET("residuo/all/{pagina}")

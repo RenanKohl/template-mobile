@@ -10,16 +10,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-import java.util.List;
+
 import br.utp.sustentabilidade.R;
 import br.utp.sustentabilidade.databinding.ActivityReciclagemAddBinding;
 import br.utp.sustentabilidade.models.Reciclagem;
 import br.utp.sustentabilidade.models.RespostaJSON;
 import br.utp.sustentabilidade.network.NetworkManager;
-import br.utp.sustentabilidade.utils.OpenModalImage;
+import br.utp.sustentabilidade.widgets.adapters.modal.OpenModalImage;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,7 +37,10 @@ public class ReciclagemAddActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_reciclagem_add);
 
-        mBinding.buttonBack.setOnClickListener(e -> closeActivity());
+        // Criando botão de voltar no Action Bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
+
 
         mBinding.imageViewUpload.setOnClickListener(v -> openModalImage());
         mBinding.buttonEnviar.setOnClickListener(e -> postReciclageItem());
@@ -56,22 +60,22 @@ public class ReciclagemAddActivity extends AppCompatActivity  {
         mBinding.editTextAddDescricaoReciclagem.getText().toString().length() > 0 &&
         pathImg.length() > 0
         ){
-            Call<Reciclagem> call = NetworkManager.service().inserirReciclagem(
+            Call<RespostaJSON> call = NetworkManager.service().inserirReciclagem(
                     mBinding.editTextAddTitleReciclagem.getText().toString(),
                     mBinding.editTextAddDescricaoReciclagem.getText().toString(),
                     "https://d1qmdf3vop2l07.cloudfront.net/azure-candy.cloudvent.net/compressed/_min_/4b9098a09523e8f3810cc79aca61623f.jpg"
             );
 
-            call.enqueue(new Callback<Reciclagem>() {
+            call.enqueue(new Callback<RespostaJSON>() {
                 @Override
-                public void onResponse(Call<Reciclagem> call, Response<Reciclagem>response) {
+                public void onResponse(Call<RespostaJSON> call, Response<RespostaJSON>response) {
                     if(response.isSuccessful()) {
                         responseAddReciclagem();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Reciclagem> call, Throwable t) {
+                public void onFailure(Call<RespostaJSON> call, Throwable t) {
                     erroFailure();
                 }
             });
@@ -106,6 +110,24 @@ public class ReciclagemAddActivity extends AppCompatActivity  {
         startActivityForResult(it, 200);
     }
 
+    private void closeActivity(){
+        finish();
+    }
+    /**
+     * Classe que retorna o evento da actionlbar
+     * @param item Botão de voltar
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request it is that we're responding to
@@ -137,7 +159,4 @@ public class ReciclagemAddActivity extends AppCompatActivity  {
             Log.i("Problem ActivityResult", "Something wrong in onActivityResult method!");
     }
 
-    private void closeActivity(){
-        finish();
-    }
 }

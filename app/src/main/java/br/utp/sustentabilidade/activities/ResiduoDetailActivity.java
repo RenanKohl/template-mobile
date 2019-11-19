@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil;
 import br.utp.sustentabilidade.R;
 import br.utp.sustentabilidade.databinding.ActivityResiduoDetailBinding;
 import br.utp.sustentabilidade.models.Residuo;
-import br.utp.sustentabilidade.utils.OpenModalImage;
+import br.utp.sustentabilidade.widgets.adapters.modal.OpenModalImage;
 
 public class ResiduoDetailActivity extends AppCompatActivity {
     private ActivityResiduoDetailBinding mBinding;
