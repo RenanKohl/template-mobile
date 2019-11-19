@@ -27,7 +27,7 @@ import br.utp.sustentabilidade.databinding.FragmentReciclagemBinding;
 import br.utp.sustentabilidade.models.Reciclagem;
 import br.utp.sustentabilidade.models.RespostaJSON;
 import br.utp.sustentabilidade.network.NetworkManager;
-import br.utp.sustentabilidade.utils.OpenModalImage;
+import br.utp.sustentabilidade.widgets.adapters.modal.OpenModalImage;
 import br.utp.sustentabilidade.widgets.adapters.ReciclagemAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,7 +35,7 @@ import retrofit2.Response;
 
 public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.ReciclagemListener {
     private FragmentReciclagemBinding mBinding;
-    private List<Reciclagem> mReciclagem;
+    private static List<Reciclagem> mReciclagem;
     private int pagina = 0;
 
     /**
@@ -219,6 +219,7 @@ public class ReciclagemFragment extends Fragment implements ReciclagemAdapter.Re
         it.putExtra("titulo", reciclagem.getTitulo());
         it.putExtra("descricao", reciclagem.getDescricao());
         it.putExtra("foto", reciclagem.getFoto());
+        it.putExtra("id", reciclagem.getId());
         startActivity(it);
     }
 
