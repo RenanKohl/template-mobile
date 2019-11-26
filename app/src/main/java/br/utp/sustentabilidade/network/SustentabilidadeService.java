@@ -52,6 +52,9 @@ public interface SustentabilidadeService {
     @GET("residuo/all/{pagina}")
     Call<RespostaJSON<List<Residuo>>> listarAllResiduo(@Path("pagina") int pagina);
 
+    @DELETE("residuo/{id}")
+    Call<RespostaJSON> deleteResiduo(@Path("id") int id);
+
     @POST("residuo/new")
     @FormUrlEncoded
     Call<Residuo>inserirResiduo(

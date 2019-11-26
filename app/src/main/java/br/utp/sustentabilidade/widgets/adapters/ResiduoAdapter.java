@@ -65,7 +65,7 @@ public class ResiduoAdapter extends RecyclerView.Adapter<ResiduoAdapter.ResiduoV
             // TODO: Amarrar eventos
             mBinding.residuoImgFoto.setOnClickListener(v -> mListener.onFotoClick(residuo));
             mBinding.residuoButtomDetail.setOnClickListener(v -> mListener.onDetalheClick(residuo));
-            mBinding.buttonDeleteCardDelete.setOnClickListener(v -> mListener.onClickDelete(residuo));
+            //mBinding.buttonDeleteCardDelete.setOnClickListener(v -> mListener.onClickDelete(residuo));
         }
     }
 }

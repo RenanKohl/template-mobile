@@ -34,7 +34,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class ResiduosFragment extends Fragment implements ResiduoAdapter.ResiduoListener {
 
     private FragmentResiduosBinding mBinding;
@@ -67,6 +66,10 @@ public class ResiduosFragment extends Fragment implements ResiduoAdapter.Residuo
 
         mBinding.residuoRecyclerView.setAdapter(adapter);
         mBinding.residuoRecyclerView.setLayoutManager(layout);
+
+        // Exibe a progressbar
+        mBinding.residuoLoading.setVisibility(View.VISIBLE);
+
         mBinding.residuoRecyclerView.addOnScrollListener(recyclerViewOnScrollListener);
         carregarWebService(pagina);
 
@@ -213,6 +216,7 @@ public class ResiduosFragment extends Fragment implements ResiduoAdapter.Residuo
         it.putExtra("titulo", residuo.getTitulo());
         it.putExtra("descricao", residuo.getDescricao());
         it.putExtra("foto", residuo.getFoto());
+        it.putExtra("id", residuo.getId());
         startActivity(it);
     }
 
