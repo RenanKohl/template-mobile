@@ -67,6 +67,10 @@ public class AgrotoxicosFragment extends Fragment implements AgrotoxicoAdapter.A
 
         mBinding.agrotoxicoRecyclerView.setAdapter(adapter);
         mBinding.agrotoxicoRecyclerView.setLayoutManager(layout);
+
+        // Exibe a progressbar
+        mBinding.agrotoxicoLoading.setVisibility(View.VISIBLE);
+
         mBinding.agrotoxicoRecyclerView.addOnScrollListener(recyclerViewOnScrollListener);
         carregarWebService(pagina);
 
@@ -213,6 +217,7 @@ public class AgrotoxicosFragment extends Fragment implements AgrotoxicoAdapter.A
         it.putExtra("titulo", agrotoxico.getTitulo());
         it.putExtra("descricao", agrotoxico.getDescricao());
         it.putExtra("foto", agrotoxico.getFoto());
+        it.putExtra("id",agrotoxico.getId());
         startActivity(it);
     }
 

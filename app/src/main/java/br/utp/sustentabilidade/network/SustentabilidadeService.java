@@ -53,6 +53,9 @@ public interface SustentabilidadeService {
     @GET("agrotoxico/all/{pagina}")
     Call<RespostaJSON<List<Agrotoxico>>> listarAllAgrotoxicos(@Path("pagina") int pagina);
 
+    @DELETE("agrotoxico/{id}")
+    Call<RespostaJSON> deleteAgrotoxico(@Path("id") int id);
+
     @POST("agrotoxico/new")
     @FormUrlEncoded
     Call<Agrotoxico>inserirAgrotoxico(
