@@ -2,6 +2,7 @@ package br.utp.sustentabilidade.network;
 
 import java.util.List;
 
+import br.utp.sustentabilidade.models.Agrotoxico;
 import br.utp.sustentabilidade.models.Organico;
 import br.utp.sustentabilidade.models.Reciclagem;
 import br.utp.sustentabilidade.models.Residuo;
@@ -43,6 +44,18 @@ public interface SustentabilidadeService {
     @POST("reciclagem/new")
     @FormUrlEncoded
     Call<RespostaJSON>inserirReciclagem(
+            @Field("titulo") String titulo,
+            @Field("descricao") String descricao,
+            @Field("foto") String foto
+    );
+
+    // AGROTÓXICOS
+    @GET("agrotoxico/all/{pagina}")
+    Call<RespostaJSON<List<Agrotoxico>>> listarAllAgrotoxicos(@Path("pagina") int pagina);
+
+    @POST("agrotoxico/new")
+    @FormUrlEncoded
+    Call<Agrotoxico>inserirAgrotoxico(
             @Field("titulo") String titulo,
             @Field("descricao") String descricao,
             @Field("foto") String foto

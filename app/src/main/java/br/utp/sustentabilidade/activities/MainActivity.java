@@ -15,8 +15,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import br.utp.sustentabilidade.R;
 import br.utp.sustentabilidade.databinding.ActivityMainBinding;
+import br.utp.sustentabilidade.fragments.AgrotoxicosFragment;
 import br.utp.sustentabilidade.fragments.ResiduosFragment;
-import br.utp.sustentabilidade.fragments.OrganicoAgrotoxicosFragment;
 import br.utp.sustentabilidade.fragments.OrganicoFragment;
 import br.utp.sustentabilidade.fragments.OrganicoReducaoLixoFragment;
 import br.utp.sustentabilidade.fragments.ReciclagemFragment;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     // Inicializa os fragmentos
     Fragment mFragmentoOrganico = OrganicoFragment.newInstance();
     Fragment mOrganicoReciclagemFragment = ReciclagemFragment.newInstance();
-    Fragment mOrganicoAgrotoxicosFragment = OrganicoAgrotoxicosFragment.newInstance();
+    Fragment mOrganicoAgrotoxicosFragment = AgrotoxicosFragment.newInstance();
     Fragment mOrganicoReducaoLixoFragment = OrganicoReducaoLixoFragment.newInstance();
     Fragment mOrganicoFragmentResiduos = ResiduosFragment.newInstance();
 
@@ -60,14 +60,13 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 case "Agrotóxicos ♨":
                     // Abrir activity para adicionar: Agrotóxicos
-
+                    Intent agrotoxico = new Intent(this, AgrotoxicoAddActivity.class);
+                    startActivity(agrotoxico);
                     // Exibe um snackbar Para test apagar quando for implementar
-                    Snackbar.make(mBinding.getRoot(), "Agrotóxicos", Snackbar.LENGTH_SHORT)
-                            .show();
+                    //Snackbar.make(mBinding.getRoot(), "Agrotóxicos", Snackbar.LENGTH_SHORT).show();
                     return;
                 case "Redução de lixos \uD83D\uDDD1":
                     // Abrir activity para adicionar: Redução de lixos
-
                     // Exibe um snackbar Para test apagar quando for implementar
                     Snackbar.make(mBinding.getRoot(), "Redução de lixos", Snackbar.LENGTH_SHORT)
                             .show();
