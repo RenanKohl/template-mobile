@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -106,6 +107,23 @@ public class AgrotoxicoAddActivity extends AppCompatActivity  {
         startActivityForResult(it, 200);
     }
 
+    private void closeActivity(){
+        finish();
+    }
+    /**
+     * Classe que retorna o evento da actionlbar
+     * @param item Botão de voltar
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request it is that we're responding to
@@ -137,7 +155,4 @@ public class AgrotoxicoAddActivity extends AppCompatActivity  {
             Log.i("Problem ActivityResult", "Something wrong in onActivityResult method!");
     }
 
-    private void closeActivity(){
-        finish();
-    }
 }

@@ -65,7 +65,7 @@ public class AgrotoxicoAdapter extends RecyclerView.Adapter<AgrotoxicoAdapter.Ag
             // TODO: Amarrar eventos
             mBinding.agrotoxicoImgFoto.setOnClickListener(v -> mListener.onFotoClick(agrotoxico));
             mBinding.agrotoxicoButtomDetail.setOnClickListener(v -> mListener.onDetalheClick(agrotoxico));
-            mBinding.buttonDeleteCardDelete.setOnClickListener(v -> mListener.onClickDelete(agrotoxico));
+            //mBinding.buttonDeleteCardDelete.setOnClickListener(v -> mListener.onClickDelete(agrotoxico));
         }
     }
 }
