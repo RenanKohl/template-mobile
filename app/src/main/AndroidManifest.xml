@@ -13,6 +13,8 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".activities.ReciclagemAddActivity"></activity>
         <activity android:name=".activities.ReciclagemDetailActivity" />
+        <activity android:name=".activities.AgrotoxicoAddActivity"></activity>
+        <activity android:name=".activities.AgrotoxicoDetailActivity" />
         <activity android:name=".activities.ResiduoAddActivity"></activity>
         <activity android:name=".activities.ResiduoDetailActivity" />
         <activity android:name=".activities.MainActivity">
